@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+    <!--
+  * Please see the included README.md file for license terms and conditions.
+  -->
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="media_button_bar/css/media_button_bar.css">
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" class="uib-framework-theme">
+        <meta charset="UTF-8">
+        <title>View Task - Task Manager App</title>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+        <!--
+  * The "meta viewport" tag (below) helps your app size appropriately to a device's ideal viewport.
+  * Note that Windows device viewports work better when initialized using the @viewport CSS rule.
+  * For a quick overview of "meta viewport" and @viewport, see this article:
+  *   http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-dont-forget-the-viewport-meta-tag
+  * To see how it works, try your app on a real device with and without a "meta viewport" tag.
+  * Additional useful references include:
+  *   http://www.quirksmode.org/mobile/viewports.html
+  *   http://www.quirksmode.org/mobile/metaviewport/devices.html
+  *   https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html
+-->
+
+        <!-- <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1"> -->
+        <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=no">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1, maximum-scale=2"> -->
+
+        <style>
+            /* following three (cascaded) are equivalent to above three meta viewport statements */
+            /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html */
+            /* see http://dev.w3.org/csswg/css-device-adapt/ */
+                @-ms-viewport { width: 100vw ; min-zoom: 100% ; zoom: 100% ; }          @viewport { width: 100vw ; min-zoom: 100% zoom: 100% ; }
+                @-ms-viewport { user-zoom: fixed ; min-zoom: 100% ; }                   @viewport { user-zoom: fixed ; min-zoom: 100% ; }
+                /*@-ms-viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }   @viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }*/
+        </style>
+
+        <link rel="stylesheet" href="css/app.css">
+        <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
+
+        <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
+        <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work below -->
+        <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
+
+        <!-- Recommended location for your JavaScript libraries -->
+        <!-- These library references (below) are just examples to give you the general idea... -->
+        <!-- <script src="lib/mc/hammer.js"></script> -->
+        <!-- <script src="lib/ft/fastclick.js"></script> -->
+
+        <!--
+  * cordova.js is a phantom lib for "Cordova HTML5 web app," it does nothing in a "Standard HTML5 web app"
+  * Seeing a "Failed to load resource: net::ERR_FILE_NOT_FOUND" message caused by this "cordova.js" script?
+  * The cordova.js script is required if you convert your "Standard HTML5" project into a "Cordova" project.
+  * You can safely ignore the error or comment out this line if you will not be developing a Cordova app.
+-->
+        <script src="cordova.js" id="xdkJScordova_"></script>
+
+        <script src="js/app.js"></script>
+        <!-- for your event code, see README and file comments for details -->
+        <script src="js/init-app.js"></script>
+        <!-- for your init code, see README and file comments for details -->
+        <script src="xdk/init-dev.js"></script>
+        <!-- normalizes device and document ready events, see file for details -->
+        <script type="application/javascript" src="lib/jquery.min.js"></script>
+        <script type="application/javascript" src="marginal/marginal-position.min.js"></script>
+    </head>
+
+    <body ng-app="">
+
+        <script type="text/javascript">
+            var task_id;
+        </script>
+
+        <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
+        <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work above -->
+        <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
+        <div class="upage" id="mainpage">
+            <div class="upage-outer">
+                <div class="fixedmenu">
+                    <div class="menub">
+                        <button onclick="location.href='dash.html'" class="btn widget uib_w_1 d-margins btn-default dashbtn" data-uib="twitter%20bootstrap/button" data-ver="1">Back</button>
+                    </div>
+
+                    <div class="uib-header header-bg container-group inner-element uib_w_1" data-uib="layout/header" data-ver="0">
+                        <h2 style="text-align: left; padding-left: 5px;">View Task</h2>
+                        <div class="widget-container wrapping-col single-centered"></div>
+                        <div class="widget-container content-area horiz-area wrapping-col left"></div>
+                        <div class="widget-container content-area horiz-area wrapping-col right"></div>
+                    </div>
+                </div>
+                <form name="myForm" novalidate="" method="post" ng-submit="myForm.$valid" id="myForm">
+                    <div class="upage-content ac0 content-area vertical-col left" id="page_11_35">
+
+                        <div class="grid grid-pad urow uib_row_1 row-height-1" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_3 col-0_12-12" data-uib="layout/col" data-ver="0">
+<script type="text/javascript">
+            function $_GET(param) {
+	                               var vars = {};
+	window.location.href.replace( location.hash, '' ).replace( 
+		/[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+		function( m, key, value ) { // callback
+			vars[key] = value !== undefined ? value : '';
+		}
+	);
+
+	if ( param ) {
+		return vars[param] ? vars[param] : null;	
+	}
+	return vars;
+            }
+                                    
+                                            var index = $_GET('id');
+                                            var xhr = new XMLHttpRequest();
+                                            xhr.open("GET", "https://myfuelpump.com/task/index.php/Sendapi_controller/data", false);
+                                            xhr.onload = function(){
+                                            if(xhr.status == 200)
+                                            {
+                                                var json_string = xhr.responseText;
+                                                var json = JSON.parse(json_string);
+                                                document.write("<p>Description</p>"+json.tasks[index].description+"<br><table class='tableview'><tbody><tr><td>Due Date</td><td>"+json.tasks[index].due_date+"</td></tr><tr><td>Assigned To</td><td>"+json.tasks[index].email+"</td></tr><table>");
+                                            }
+                                            else if(xhr.status == 404)
+                                            {
+                                                alert("Web Service Doesn't Exist");
+                                            }
+                                            else
+                                            {
+                                                alert("Unknown error occured while connecting to server");
+                                            }
+                                            }
+                                            xhr.send();
+        </script>
+                                <br>
+                                <hr>
+                                <center>History</center>
+                                <br>
+
+                                <br>
+                                <br>
+                                <table width="100%">
+                                    <tbody>
+                                        <script type="text/javascript">
+            function $_GET(param) {
+	                               var vars = {};
+	window.location.href.replace( location.hash, '' ).replace( 
+		/[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+		function( m, key, value ) { // callback
+			vars[key] = value !== undefined ? value : '';
+		}
+	);
+
+	if ( param ) {
+		return vars[param] ? vars[param] : null;	
+	}
+	return vars;
+}
+                                            task_id = $_GET('task_id');
+                                            var xhr = new XMLHttpRequest();
+                                            xhr.open("GET", "https://myfuelpump.com/task/index.php/Sendapi_controller/taskAdds/"+task_id+"/", false);
+                                            xhr.onload = function(){
+                                            if(xhr.status == 200)
+                                            {
+                                                var json_string = xhr.responseText;
+                                                var json = JSON.parse(json_string);
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                function timeDifference(current, previous) {
+    
+    var msPerMinute = 60 * 1000;
+    var msPerHour = msPerMinute * 60;
+    var msPerDay = msPerHour * 24;
+    var msPerMonth = msPerDay * 30;
+    
+    var elapsed = current - previous;
+    
+    if (elapsed < msPerMinute) {
+         return Math.round(elapsed/1000) + ' seconds ago';   
+    }
+    
+    else if (elapsed < msPerHour) {
+         return Math.round(elapsed/msPerMinute) + ' mins ago';   
+    }
+    
+    else if (elapsed < msPerDay ) {
+         return Math.round(elapsed/msPerHour ) + ' hours ago';   
+    }
+
+    else if (elapsed < msPerMonth) {
+         return Math.round(elapsed/msPerDay) + ' days ago';   
+    }
+    
+    else {
+         return Math.round(elapsed/msPerMonth) + ' months ago';   
+    }
+}
+
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                for(var i=0; i<=json.TaskAdds.length; i++)
+                                                {
+                                                    if(json.TaskAdds[i].type == 'note')
+                                                    {
+                                                        var time= Date.now();
+                                                        var diff = timeDifference(time, json.TaskAdds[i].timestp);
+                                                        document.write("<tr><td valign='bottom' class='object'>"+json.TaskAdds[i].content+"</td><td align='right' valign='top' class='timer'>"+diff+"</td></tr>");
+                                                    }
+                                                    else if(json.TaskAdds[i].type == 'image')
+                                                    {
+                                                        document.write("<tr><td valign='bottom' class='object'><img src='https://myfuelpump.com/task/uploads/"+json.TaskAdds[i].content+"'></td><td align='right' valign='top' class='timer'>"+diff+"</td></tr>");
+                                                    }
+                                                }
+                                            }
+                                            else if(xhr.status == 404)
+                                            {
+                                                alert("Web Service Doesn't Exist");
+                                            }
+                                            else
+                                            {
+                                                alert("Unknown error occured while connecting to server");
+                                            }
+                                            }
+                                            xhr.send();
+        </script>
+                                    </tbody>
+                                </table>
+                                <div class="table-thing widget uib_w_3 d-margins" data-uib="twitter%20bootstrap/text_area" data-ver="1">
+                                    <textarea cols="45" rows="2" class="wide-control form-control textarear" wrap="soft" name="note" ng-model="note" required="" id="note"></textarea>
+                                    <span class="error" ng-show="myForm.note.$touched &amp;&amp; myForm.note.$invalid || myForm.note.$dirty &amp;&amp; myForm.note.$invalid">A note is required.</span>
+                                </div>
+                                <img src="" id="picture">
+                                <textarea id="textAreaFileContents" class="hide"></textarea>
+                                <script type="text/javascript">
+            $(document).ready(function(){
+                                      $('#myForm').submit(function(){
+                                          var note = document.getElementById("note").value;
+                                          var jsondata = note+";"+task_id;
+                                          
+                                          jQuery.ajax({
+                                              type: "POST",
+                                              url: "https://myfuelpump.com/task/index.php/Receiveapi_controller/note/",
+                                              data: jsondata,
+                                              contentType: "application/json",
+                                              dataType: "json"
+                                          });
+                                          location.reload();
+                                      });  
+                                    });
+        </script>
+                                <button type="submit" id="add" class="btn widget uib_w_4 d-margins dashbtn btn-default button" data-uib="twitter%20bootstrap/button" data-ver="1" ng-disabled=myForm.$invalid>Add Note</button>
+                            </div>
+                            <span class="uib_shim"></span>
+                            <center>
+                                <input type="image" src="images/cam.png" onclick="takePhoto();">
+                            </center>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+        <script type="text/javascript">
+            function takePhoto()
+                                        {
+                                            intel.xdk.camera.takePicture(100,true,"png");
+                                            
+                                        }
+                                    
+                                    
+                                    //fired when picture is successfully captured using camera or imported from photo library. 
+                                    document.addEventListener("intel.xdk.camera.picture.add",function(event){
+                                    alert("Picture added to application local storage");
+                                    }); 
+        
+                                    //fired if camera is in use by another app
+                                    document.addEventListener("intel.xdk.camera.picture.busy",function(){
+                                    alert("Camera is already in use");
+                                    });
+        
+                                    //fired when user clicks cancel instead of capturing an image or importing.
+                                    document.addEventListener("intel.xdk.camera.picture.cancel",function(){
+                                    alert("You pressed the cancel button");
+                                    });
+                                    
+                                    document.addEventListener("intel.xdk.camera.picture.add",function(event){
+                                    //picture name
+                                    var name = event.filename;
+            
+                                    //absolute URL of the image
+                                    var url = intel.xdk.camera.getPictureURL(name);
+            
+                                    //dislay the image
+                                    document.getElementById("picture").setAttribute("src", url);
+                                    });
+                                    
+                                    //fired when picture is successfully captured using camera or imported from photo library. 
+                                    document.addEventListener("intel.xdk.camera.picture.add",function(event){
+                                    //picture name
+                                    var name = event.filename;
+            
+                                    //absolute URL of the image
+                                    var url = intel.xdk.camera.getPictureURL(name);
+            
+                                    
+                                        
+                                        
+                                        
+                                        
+                                    var filesSelected = url;
+                                    var fileToLoad = filesSelected;
+ 
+                                    var fileReader = new FileReader();
+ 
+                                    fileReader.onload = function(fileLoadedEvent) 
+                                    {
+                                    var textAreaFileContents = document.getElementById
+                                    (
+                                        "textAreaFileContents"
+                                    );
+     
+                                    textAreaFileContents.innerHTML = fileLoadedEvent.target.result;
+                                    };
+ 
+                                    fileReader.readAsDataURL(url);
+                                        
+                                    var b64 = document.getElementById("textAreaFileContents").value;
+                                        alert(url);
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                    });
+        </script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    </body>
+
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+    <!--
+  * Please see the included README.md file for license terms and conditions.
+  -->
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" class="uib-framework-theme">
+        <meta charset="UTF-8">
+        <title>Dashboard - Task Manager App</title>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+        <!--
+  * The "meta viewport" tag (below) helps your app size appropriately to a device's ideal viewport.
+  * Note that Windows device viewports work better when initialized using the @viewport CSS rule.
+  * For a quick overview of "meta viewport" and @viewport, see this article:
+  *   http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-dont-forget-the-viewport-meta-tag
+  * To see how it works, try your app on a real device with and without a "meta viewport" tag.
+  * Additional useful references include:
+  *   http://www.quirksmode.org/mobile/viewports.html
+  *   http://www.quirksmode.org/mobile/metaviewport/devices.html
+  *   https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html
+-->
+
+        <!-- <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1"> -->
+        <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=no">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1, maximum-scale=2"> -->
+
+        <style>
+            /* following three (cascaded) are equivalent to above three meta viewport statements */
+            /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html */
+            /* see http://dev.w3.org/csswg/css-device-adapt/ */
+                @-ms-viewport { width: 100vw ; min-zoom: 100% ; zoom: 100% ; }          @viewport { width: 100vw ; min-zoom: 100% zoom: 100% ; }
+                @-ms-viewport { user-zoom: fixed ; min-zoom: 100% ; }                   @viewport { user-zoom: fixed ; min-zoom: 100% ; }
+                /*@-ms-viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }   @viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }*/
+        </style>
+
+        <link rel="stylesheet" href="css/app.css">
+        <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
+
+        <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
+        <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work below -->
+        <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
+
+        <!-- Recommended location for your JavaScript libraries -->
+        <!-- These library references (below) are just examples to give you the general idea... -->
+        <!-- <script src="lib/mc/hammer.js"></script> -->
+        <!-- <script src="lib/ft/fastclick.js"></script> -->
+
+        <!--
+  * cordova.js is a phantom lib for "Cordova HTML5 web app," it does nothing in a "Standard HTML5 web app"
+  * Seeing a "Failed to load resource: net::ERR_FILE_NOT_FOUND" message caused by this "cordova.js" script?
+  * The cordova.js script is required if you convert your "Standard HTML5" project into a "Cordova" project.
+  * You can safely ignore the error or comment out this line if you will not be developing a Cordova app.
+-->
+        <script src="cordova.js" id="xdkJScordova_"></script>
+
+        <script src="js/app.js"></script>
+        <!-- for your event code, see README and file comments for details -->
+        <script src="js/init-app.js"></script>
+        <!-- for your init code, see README and file comments for details -->
+        <script src="xdk/init-dev.js"></script>
+        <!-- normalizes device and document ready events, see file for details -->
+        <script type="application/javascript" src="lib/jquery.min.js"></script>
+        <script type="application/javascript" src="marginal/marginal-position.min.js"></script>
+        <script type="application/javascript" src="js/index_user_scripts.js"></script>
+        <script type="application/javascript" src="xdk/ad/bs_subpage.js"></script>
+    </head>
+
+    <body>
+        
+        <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
+        <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work above -->
+        <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
+        <div class="upage" id="mainpage">
+            <div class="upage-outer">
+                <div class="wrapper">
+                    <div class="uib-header header-bg container-group inner-element uib_w_1" data-uib="layout/header" data-ver="0">
+                        <h2 style="text-align: left; padding-left: 5px;">Dashboard</h2>
+                        <div class="widget-container wrapping-col single-centered"></div>
+                        <div class="widget-container content-area horiz-area wrapping-col left"></div>
+                        <div class="widget-container content-area horiz-area wrapping-col right"></div>
+                    </div>
+
+                    <div class="upage-content ac0 content-area vertical-col left" id="page_11_35">
+
+                        <div class="grid grid-pad urow uib_row_1 row-height-1" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_1 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <p>People</p>
+                                <table class="tabledash">
+                                    <tbody>
+                                        <script type="text/javascript">
+                                            function $_GET(param) {
+	                               var vars = {};
+	window.location.href.replace( location.hash, '' ).replace( 
+		/[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+		function( m, key, value ) { // callback
+			vars[key] = value !== undefined ? value : '';
+		}
+	);
+
+	if ( param ) {
+		return vars[param] ? vars[param] : null;	
+	}
+	return vars;
+}
+                                            var user = $_GET('user');
+                                            
+                                            
+                                            
+                                            var xhr = new XMLHttpRequest();
+                                            xhr.open("GET", "https://myfuelpump.com/task/index.php/Sendapi_controller/data", false);
+                                            xhr.onload = function(){
+                                            if(xhr.status == 200)
+                                            {
+                                                var json_string = xhr.responseText;
+                                                var json = JSON.parse(json_string);
+                                                for(var i=0; i<=json.people.length; i++)
+                                                {
+                                                    if(user == json.people[i].person_id)
+                                                    {
+                                                    document.write("<tr><td onclick=window.location.assign('view_person.html?id="+json.people[i].person_id+"&email="+json.people[i].email+"')>"+json.people[i].email+" (User On This Device)<span class='glyphicon glyphicon-play arrow' aria-hidden='true'></span></td></tr>");
+                                                    }
+                                                    else
+                                                    {
+                                                       document.write("<tr><td onclick=window.location.assign('view_person.html?id="+json.people[i].person_id+"&email="+json.people[i].email+"')>"+json.people[i].email+"<span class='glyphicon glyphicon-play arrow' aria-hidden='true'></span></td></tr>"); 
+                                                    }
+                                                }
+                                            }
+                                            else if(xhr.status == 404)
+                                            {
+                                                alert("Web Service Doesn't Exist");
+                                            }
+                                            else
+                                            {
+                                                alert("Unknown error occured while connecting to server");
+                                            }
+                                            }
+                                            xhr.send();
+                                        </script>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-pad urow uib_row_2 row-height-2" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_2 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <button onclick="location.href='add_person.html'" class="btn widget uib_w_2 d-margins button style-22 dashbtn btn-default" data-uib="twitter%20bootstrap/button" data-ver="1">Add Person</button>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-pad urow uib_row_3 row-height-3" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_3 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <p>Tasks</p>
+                                <div class="widget-container content-area vertical-col">
+                                    <table class="tabledash">
+                                        <tbody>
+                                            <script type="text/javascript">
+                                            var xhr = new XMLHttpRequest();
+                                            xhr.open("GET", "https://myfuelpump.com/task/index.php/Sendapi_controller/data", false);
+                                            xhr.onload = function(){
+                                            if(xhr.status == 200)
+                                            {
+                                                var json_string = xhr.responseText;
+                                                var json = JSON.parse(json_string);
+                                                for(var i=0; i<=json.tasks.length; i++)
+                                                {
+                                                    document.write("<tr><td onclick=window.location.assign('view_task.html?id="+i+"&task_id="+json.tasks[i].task_id+"')>"+json.tasks[i].description+"</td></tr>");
+                                                }
+                                            }
+                                            else if(xhr.status == 404)
+                                            {
+                                                alert("Web Service Doesn't Exist");
+                                            }
+                                            else
+                                            {
+                                                alert("Unknown error occured while connecting to server");
+                                            }
+                                            }
+                                            xhr.send();
+                                        </script>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid grid-pad urow uib_row_4 row-height-4" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_4 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <button onclick="location.href='add_task.html'" class="btn widget uib_w_3 d-margins button dashbtn btn-default" data-uib="twitter%20bootstrap/button" data-ver="1">Add Task</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </body>
+
+</html>
