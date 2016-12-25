@@ -116,7 +116,7 @@
                                                 <div class="photo">
                                                     <div class="widget uib_w_3 scale-image d-margins" data-uib="media/img" data-ver="0" style="width:100%">
                                                         <figure class="figure-align" style="width:100%">
-                                                            <img ng-src="http://localhost/Task-Manager/uploads/{{x.comment}}" style="width:100%">
+                                                            <img ng-src="https://myfuelpump.com/task/uploads/{{x.comment}}" style="width:100%">
                                                             <figcaption data-position="bottom"></figcaption>
                                                         </figure>
                                                     </div>
@@ -200,7 +200,9 @@
 
 app.controller('MainCtrl', ['$scope', '$window', '$http', function($scope, $window, $http) {
     var store = this;
+    $scope.imageUrl = "http://myfuelpump.com/task/uploads/";
     $scope.time= Date.now();
+    store.myData = [];
     var url = "https://myfuelpump.com/task/index.php/Sendapi_controller/taskAdds/"+$window.index;
     $http.get(url).success(function (data) {
         store.myData = data;
