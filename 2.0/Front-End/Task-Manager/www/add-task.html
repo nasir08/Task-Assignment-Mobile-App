@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <!--
+  * Please see the included README.md file for license terms and conditions.
+  -->
+
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="ionic/css/ionic.min.css">
+        <title>Add New Task</title>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+        <!--
+  * The "meta viewport" tag (below) helps your app size appropriately to a device's ideal viewport.
+  * Note that Windows device viewports work better when initialized using the @viewport CSS rule.
+  * For a quick overview of "meta viewport" and @viewport, see this article:
+  *   http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-dont-forget-the-viewport-meta-tag
+  * To see how it works, try your app on a real device with and without a "meta viewport" tag.
+  * Additional useful references include:
+  *   http://www.quirksmode.org/mobile/viewports.html
+  *   http://www.quirksmode.org/mobile/metaviewport/devices.html
+  *   https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html
+-->
+
+        <!-- <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1"> -->
+        <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=no">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1, maximum-scale=2"> -->
+
+        <style>
+            /* following three (cascaded) are equivalent to above three meta viewport statements */
+            /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html */
+            /* see http://dev.w3.org/csswg/css-device-adapt/ */
+                @-ms-viewport { width: 100vw ; min-zoom: 100% ; zoom: 100% ; }          @viewport { width: 100vw ; min-zoom: 100% zoom: 100% ; }
+                @-ms-viewport { user-zoom: fixed ; min-zoom: 100% ; }                   @viewport { user-zoom: fixed ; min-zoom: 100% ; }
+                /*@-ms-viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }   @viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }*/
+        </style>
+
+        <link rel="stylesheet" href="css/app.css">
+        <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
+
+        <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
+        <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work below -->
+        <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
+
+        <!-- Recommended location for your JavaScript libraries -->
+        <!-- These library references (below) are just examples to give you the general idea... -->
+        <!-- <script src="lib/mc/hammer.js"></script> -->
+        <!-- <script src="lib/ft/fastclick.js"></script> -->
+
+        <!--
+  * cordova.js is a phantom lib for "Cordova HTML5 web app," it does nothing in a "Standard HTML5 web app"
+  * Seeing a "Failed to load resource: net::ERR_FILE_NOT_FOUND" message caused by this "cordova.js" script?
+  * The cordova.js script is required if you convert your "Standard HTML5" project into a "Cordova" project.
+  * You can safely ignore the error or comment out this line if you will not be developing a Cordova app.
+-->
+        <script src="cordova.js" id="xdkJScordova_"></script>
+
+        <script src="js/app.js"></script>
+        <!-- for your event code, see README and file comments for details -->
+        <script src="js/init-app.js"></script>
+        <!-- for your init code, see README and file comments for details -->
+        <script src="xdk/init-dev.js"></script>
+        <!-- normalizes device and document ready events, see file for details -->
+        <script type="application/javascript" src="lib/jquery.min.js"></script>
+        <script type="application/javascript" src="marginal/marginal-position.js"></script>
+        <script type="application/javascript" src="ionic/js/ionic.bundle.js"></script>
+        <script type="application/javascript" src="js/index_init_services.js"></script>
+        <script type="application/javascript" src="js/index_user_scripts.js"></script>
+        <script type="application/javascript" src="xdk/ad/ionic_subpage.js"></script>
+        <script type="application/javascript" src="js/index_uib_w_3_modal.js"></script>
+    </head>
+
+    <body>
+        <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
+        <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work above -->
+        <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
+        <div class="upage" id="mainpage">
+            <div class="upage-outer">
+                <div class="upage-content ac0 content-area vertical-col left" id="page_26_66">
+
+                    <div class="grid grid-pad urow uib_row_2 row-height-2" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_2 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <div class="task-section" ng-app="myApps" ng-controller="myCtrl">
+                                    <form name="addTaskForm" novalidate="">
+                                        <p>Description:
+                                            <span class="required" ng-show="addTaskForm.desc.$invalid &amp;&amp; addTaskForm.desc.$dirty" ng-hide="addTaskForm.desc.$valid">&nbsp; *Required Field</span>
+                                        </p>
+                                        <label class="item item-input widget uib_w_6 d-margins">
+                                            <textarea rows="7" wrap="soft" name="desc" ng-model="desc" required=""></textarea>
+                                        </label>
+                                        <br>
+                                        <p>Due Date:
+                                            <span class="required" ng-show="addTaskForm.due_date.$invalid &amp;&amp; addTaskForm.due_date.$dirty" ng-hide="addTaskForm.due_date.$valid">&nbsp; *Required Field</span>
+                                        </p>
+                                        <label class="item item-input widget uib_w_4 d-margins">
+                                            <input type="date" name="due_date" ng-model="due_date" required="">
+                                        </label>
+                                        <br>
+                                        <p>Assigned To:
+                                            <span class="required" ng-show="addTaskForm.email.$invalid &amp;&amp; addTaskForm.email.$dirty" ng-hide="addTaskForm.email.$valid">&nbsp; *Valid email is required</span>
+                                        </p>
+                                        <label class="item item-input widget uib_w_4 d-margins">
+                                            <input type="email" name="email" ng-model="email" required="">
+                                        </label>
+                                        <br>
+                                        <br>
+                                        <button type="submit" class="button widget uib_w_2 d-margins newButton" style="background-color:green" ng-click="addTaskForm.$valid && sendPost()">Add Task</button>
+                                    </form>
+                                    <a href="index.html">
+                                        <button class="button widget uib_w_2 d-margins newButton" style="background-color:red">Cancel</button>
+                                    </a>
+                                </div>
+                                <span class="uib_shim"></span>
+                            </div>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+                </div>
+                <ion-header-bar class="bar inner-element uib_w_1 bar-positive bar-header" data-uib="ionic/header" data-ver="0" align-title="left">
+                    <div class="buttons widget-container content-area horiz-area wrapping-col"></div>
+                    <center>
+                        <h1 class="title"> Add New Task</h1>
+                    </center>
+                    <div class="buttons widget-container content-area horiz-area wrapping-col"></div>
+                </ion-header-bar>
+
+            </div>
+        </div>
+        <script>
+            var app = angular.module('myApps', []);
+            app.controller('myCtrl', function ($scope, $http) {
+    
+    $scope.sendPost = function() {
+        var data = $scope.desc+";"+$scope.due_date+";"+$scope.email;
+        $http.post("http://myfuelpump.com/task/index.php/Receiveapi_controller/task/",data);
+        window.location.href = 'index.html';
+    };
+});
+        </script>
+    </body>
+
+</html>

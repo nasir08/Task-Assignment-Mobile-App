@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+    <!--
+  * Please see the included README.md file for license terms and conditions.
+  -->
+
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="ionic/css/ionic.min.css">
+        <title>Dashboard</title>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+        <!--
+  * The "meta viewport" tag (below) helps your app size appropriately to a device's ideal viewport.
+  * Note that Windows device viewports work better when initialized using the @viewport CSS rule.
+  * For a quick overview of "meta viewport" and @viewport, see this article:
+  *   http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-dont-forget-the-viewport-meta-tag
+  * To see how it works, try your app on a real device with and without a "meta viewport" tag.
+  * Additional useful references include:
+  *   http://www.quirksmode.org/mobile/viewports.html
+  *   http://www.quirksmode.org/mobile/metaviewport/devices.html
+  *   https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html
+-->
+
+        <!-- <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1"> -->
+        <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=no">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1, maximum-scale=2"> -->
+
+        <style>
+            /* following three (cascaded) are equivalent to above three meta viewport statements */
+            /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html */
+            /* see http://dev.w3.org/csswg/css-device-adapt/ */
+                @-ms-viewport { width: 100vw ; min-zoom: 100% ; zoom: 100% ; }          @viewport { width: 100vw ; min-zoom: 100% zoom: 100% ; }
+                @-ms-viewport { user-zoom: fixed ; min-zoom: 100% ; }                   @viewport { user-zoom: fixed ; min-zoom: 100% ; }
+                /*@-ms-viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }   @viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }*/
+        </style>
+
+        <link rel="stylesheet" href="css/app.css">
+        <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
+
+        <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
+        <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work below -->
+        <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
+
+        <!-- Recommended location for your JavaScript libraries -->
+        <!-- These library references (below) are just examples to give you the general idea... -->
+        <!-- <script src="lib/mc/hammer.js"></script> -->
+        <!-- <script src="lib/ft/fastclick.js"></script> -->
+
+        <!--
+  * cordova.js is a phantom lib for "Cordova HTML5 web app," it does nothing in a "Standard HTML5 web app"
+  * Seeing a "Failed to load resource: net::ERR_FILE_NOT_FOUND" message caused by this "cordova.js" script?
+  * The cordova.js script is required if you convert your "Standard HTML5" project into a "Cordova" project.
+  * You can safely ignore the error or comment out this line if you will not be developing a Cordova app.
+-->
+        <script src="cordova.js" id="xdkJScordova_"></script>
+
+        <!-- for your event code, see README and file comments for details -->
+        <script src="js/init-app.js"></script>
+        <!-- for your init code, see README and file comments for details -->
+        <script src="xdk/init-dev.js"></script>
+        <!-- normalizes device and document ready events, see file for details -->
+        <script type="application/javascript" src="lib/jquery.min.js"></script>
+        <script type="application/javascript" src="marginal/marginal-position.js"></script>
+        <script type="application/javascript" src="ionic/js/ionic.bundle.js"></script>
+        <script type="application/javascript" src="js/index_init_services.js"></script>
+        <script type="application/javascript" src="js/index_user_scripts.js"></script>
+        <script type="application/javascript" src="xdk/ad/ionic_subpage.js"></script>
+        <script type="application/javascript" src="js/index_uib_w_3_modal.js"></script>
+    </head>
+
+    <body>
+        <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
+        <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work above -->
+        <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
+        <div class="upage" id="mainpage">
+            <div class="upage-outer">
+                <div class="upage-content ac0 content-area vertical-col left" id="page_26_66">
+                    <div class="grid grid-pad urow uib_row_1 row-height-1" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_1 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <div class="task-section">
+
+                                    <p>Description</p>
+                                    <p id="desc"></p>
+                                    <br>
+                                    <p id="due_date"></p>
+                                    <p id="assigned"></p>
+                                    <span class="uib_shim"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+
+                    <div class="grid grid-pad urow uib_row_2 row-height-2" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_2 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <div class="task-section" ng-app="myapps" ng-controller="MainCtrl as store">
+                                    <center>
+                                        <hr>
+                                        <h3>HISTORY</h3>
+                                    </center>
+                                    <button class="button widget uib_w_2 d-margins newButton" data-uib="ionic/button" data-ver="0" ng-show="hasMoreItemsToShow()" ng-click="showMoreItems()">Load Previous</button>
+                                    <br>
+                                    <br>
+                                    <div>
+                                        <div ng-repeat="x in store.myData | limitTo: -itemsLimit()">
+                                            <div ng-if="x.comment_type == 'note'">
+                                                <div class="time-stamp">{{timeDifference(time,x.comment_timestp)}}</div>
+                                                <div class="note">{{x.comment}}</div>
+                                                <div class="feed-space"></div>
+                                            </div>
+                                            <div ng-if="x.comment_type =='image'">
+                                                <div class="time-stamp">{{timeDifference(time,x.comment_timestp)}}</div>
+                                                <div class="photo">
+                                                    <div class="widget uib_w_3 scale-image d-margins" data-uib="media/img" data-ver="0" style="width:100%">
+                                                        <figure class="figure-align" style="width:100%">
+                                                            <img ng-src="http://localhost/Task-Manager/uploads/{{x.comment}}" style="width:100%">
+                                                            <figcaption data-position="bottom"></figcaption>
+                                                        </figure>
+                                                    </div>
+                                                </div>
+                                                <div class="feed-space"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+
+                                    <div>
+                                        <form name="addNoteForm" novalidate>
+                                            <label class="item item-input widget uib_w_4 d-margins" data-uib="ionic/input" data-ver="0">
+                                                <input type="text" id="note" ng-model="note" name="note" required="">
+                                            </label>
+                                            <p><span class="required" ng-show="addNoteForm.note.$invalid &amp;&amp; addNoteForm.note.$dirty" ng-hide="addNoteForm.note.$valid">&nbsp; *Required Field</span>
+                                            </p>
+                                            <button class="button widget uib_w_5 d-margins newButton" data-uib="ionic/button" data-ver="0" ng-click="addNoteForm.$valid && sendPost()">Add Note</button>
+                                        </form>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <center>
+                                        <a href="#" onclick="captureCamera()">
+                                            <img src="images/camera.jpg" width="70px" height="70px">
+                                        </a>
+                                    </center>
+                                </div>
+                                <span class="uib_shim"></span>
+                            </div>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+                </div>
+                <ion-header-bar class="bar inner-element uib_w_1 bar-positive bar-header" data-uib="ionic/header" data-ver="0" align-title="center">
+                    <div class="buttons widget-container content-area horiz-area wrapping-col"></div>
+                    <button class="button widget uib_w_5 d-margins" data-uib="ionic/button" data-ver="0" onclick="location.href = 'index.html'">Back</button>
+                    <center>
+                        <h1 class="title" id="banner"></h1>
+                    </center>
+                    <div class="buttons widget-container content-area horiz-area wrapping-col"></div>
+                </ion-header-bar>
+
+            </div>
+        </div>
+        <script>
+            function $_GET(param) {
+	                               var vars = {};
+	window.location.href.replace( location.hash, '' ).replace( 
+		/[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+		function( m, key, value ) { // callback
+			vars[key] = value !== undefined ? value : '';
+		}
+	);
+	if ( param ) {
+		return vars[param] ? vars[param] : null;	
+	}
+	return vars;
+            }
+                                    
+                                            var index = $_GET('id');
+                                            var xhr = new XMLHttpRequest();
+                                            var url = "https://myfuelpump.com/task/index.php/Sendapi_controller/fulldata/"+index;
+                                            xhr.open("GET", url);
+                                            xhr.onload = function(){
+                                            if(xhr.status == 200)
+                                            {
+                                                var json_string = xhr.responseText;
+                                                var json = JSON.parse(json_string);
+                                                document.getElementById("desc").innerHTML = json.tasks[0].desc;
+                                                document.getElementById("due_date").innerHTML = "Due Date: "+json.tasks[0].due_date;
+                                                document.getElementById("assigned").innerHTML = "Assigned To: "+json.tasks[0].email;
+                                                document.getElementById("banner").innerHTML = "Task #"+index
+                                            }
+                                            }
+                                            xhr.send();   
+        </script>
+        <script src="js/app.js"></script>
+        <script>
+            var app = angular.module('myapps', []);
+
+app.controller('MainCtrl', ['$scope', '$window', '$http', function($scope, $window, $http) {
+    var store = this;
+    $scope.time= Date.now();
+    var url = "https://myfuelpump.com/task/index.php/Sendapi_controller/taskAdds/"+$window.index;
+    $http.get(url).success(function (data) {
+        store.myData = data;
+        
+        var pagesShown = 1;
+        var pageSize = 10;
+        $scope.itemsLimit = function() {
+            return pageSize * pagesShown;
+        };
+        $scope.hasMoreItemsToShow = function() {
+            return pagesShown < (store.myData.length / pageSize);
+        };
+        $scope.showMoreItems = function() {
+            pagesShown = pagesShown + 1;         
+        };
+        $scope.timeDifference = function(current, previous) {
+            var msPerMinute = 60 * 1000;
+            var msPerHour = msPerMinute * 60;
+            var msPerDay = msPerHour * 24;
+            var msPerMonth = msPerDay * 30;
+    
+            var elapsed = current - previous;
+    
+            if (elapsed < msPerMinute) {
+                return Math.round(elapsed/1000) + ' seconds ago';   
+            }
+    
+            else if (elapsed < msPerHour) {
+                return Math.round(elapsed/msPerMinute) + ' mins ago';   
+            }
+    
+            else if (elapsed < msPerDay ) {
+                return Math.round(elapsed/msPerHour ) + ' hours ago';   
+            }
+            else if (elapsed < msPerMonth) {
+                return Math.round(elapsed/msPerDay) + ' days ago';   
+            }
+    
+            else {
+                return Math.round(elapsed/msPerMonth) + ' months ago';   
+            }
+        };
+        $scope.sendPost = function() {
+            var data = $scope.note+";"+$window.index;
+            $http.post("https://myfuelpump.com/task/index.php/Receiveapi_controller/note/",data);
+        };
+  });
+    
+}]);
+        </script>
+
+    </body>
+
+</html>
