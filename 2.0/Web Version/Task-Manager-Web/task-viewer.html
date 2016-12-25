@@ -125,8 +125,12 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div ng-repeat="y in notes">
+                                        <div class="time-stamp">{{y.timestamp}}</div>
+                                        <div class="note">{{y.content}}</div>
+                                        <div class="feed-space"></div>
+                                    </div>
                                     <br>
-
                                     <div>
                                         <form name="addNoteForm" novalidate>
                                             <label class="item item-input widget uib_w_4 d-margins" data-uib="ionic/input" data-ver="0">
@@ -200,9 +204,9 @@
 
 app.controller('MainCtrl', ['$scope', '$window', '$http', function($scope, $window, $http) {
     var store = this;
-    $scope.imageUrl = "http://myfuelpump.com/task/uploads/";
     $scope.time= Date.now();
-    store.myData = [];
+    var defaultform = "";
+    $scope.notes = [];
     var url = "https://myfuelpump.com/task/index.php/Sendapi_controller/taskAdds/"+$window.index;
     $http.get(url).success(function (data) {
         store.myData = data;
@@ -247,7 +251,12 @@ app.controller('MainCtrl', ['$scope', '$window', '$http', function($scope, $wind
         };
         $scope.sendPost = function() {
             var data = $scope.note+";"+$window.index;
+            var newNote = "{content:"+$scope.note+",timestamp:"+$scope.time+"}";
             $http.post("https://myfuelpump.com/task/index.php/Receiveapi_controller/note/",data);
+            $scope.notes.push({'content' : $scope.note,'timestamp' : 'Just now'});
+            $scope.addNoteForm.$setPristine();
+            $scope.note = angular.copy(defaultform);
+            $scope.addNoteForm.$setUntouched();
         };
   });
     
